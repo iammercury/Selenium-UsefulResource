@@ -1,5 +1,6 @@
 package seleniumUtilities;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -51,7 +52,7 @@ public class HandleCookies {
 		 * storage (e.g., file, database). Load the cookies from storage in a new
 		 * session.
 		 */
-		
+
 		// Retrieve cookies
 //        Set<Cookie> cookies = driver.manage().getCookies();
 //
@@ -63,7 +64,7 @@ public class HandleCookies {
 //            e.printStackTrace();
 //        }
 
-		 // Load cookies from the file
+		// Load cookies from the file
 		Set<Cookie> setCookies;
 		try (FileReader reader = new FileReader("cookies.json")) {
 			Gson gson = new Gson();
@@ -79,6 +80,12 @@ public class HandleCookies {
 		// Refresh the page to apply the cookies
 		driver.navigate().refresh();
 
+		String colour = driver.findElement(By.xpath("//h2")).getCssValue("color");
+		System.out.println(colour);
+
+		Color col = new Color(51, 51, 51);
+		String hex = String.format("#%02x%02x%02x", 51, 51, 51);
+		System.out.println(hex);
 	}
 
 }
